@@ -12,9 +12,15 @@ install_linux() {
     sudo apt update
     sudo apt install -y neovim tmux zsh git curl fonts-powerline kitty
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --noconfirm neovim tmux zsh git nerd-fonts kitty
+    sudo pacman -Sy --needed --noconfirm neovim tmux zsh git ttf-meslo-nerd kitty
   else
     echo "Unknown package manager"
+  fi
+  
+  DOCUMENTS_DIR="$HOME/Documents/chezmoi"
+  if ! [ -d $DOCUMENTS_DIR ]; then
+    mkdir -p $DOCUMENTS_DIR
+    ln -s ~/.local/share/chezmoi $DOCUMENTS_DIR
   fi
 }
 
@@ -36,3 +42,4 @@ if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 fi
 
+echo "All done! Setup complete"
