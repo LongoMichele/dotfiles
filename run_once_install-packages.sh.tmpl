@@ -30,6 +30,10 @@ case "$OSTYPE" in
   *) echo "OS not supported"; exit 1 ;;
 esac
 
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 # oh-my-zsh install
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh..."
