@@ -1,0 +1,7 @@
+[template]
+delimiters = ["{{", "}}"]
+
+[git]
+autoCommit = true
+autoPush = true
+

@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+
+echo "==> Installing base packages..."
+
+install_mac() {
+  echo "OS not yet supported"
+}
+
+install_linux() {
+  if command -v apt &>/dev/null; then
+    sudo apt update
+    sudo apt install -y neovim tmux zsh git curl fonts-powerline kitty
+  elif command -v pacman &>/dev/null; then
+    sudo pacman -Sy --noconfirm neovim tmux zsh git nerd-fonts kitty
+  else
+    echo "Unknown package manager"
+  fi
+}
+
+case "$OSTYPE" in
+  darwin*) install_mac ;;
+  linux*) install_linux ;;
+  *) echo "OS not supported"; exit 1 ;;
+esac
+
+# oh-my-zsh install
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing oh-my-zsh..."
+  RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# powerlevel10k install
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+  echo "Installing powerlevel10k..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+fi
+
