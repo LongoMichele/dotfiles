@@ -12,9 +12,10 @@ install_linux() {
     sudo apt update
     sudo apt install -y neovim tmux zsh git curl fonts-powerline kitty
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm neovim tmux zsh git ttf-meslo-nerd kitty
+    sudo pacman -Sy --needed --noconfirm neovim curl nodejs tmux zsh git ttf-meslo-nerd kitty
   else
     echo "Unknown package manager"
+    exit 1
   fi
   
   DOCUMENTS_DIR="$HOME/Documents/chezmoi"
@@ -44,6 +45,12 @@ fi
 if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
   echo "Installing powerlevel10k..."
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+fi
+
+# nvm install
+export NVM_DIR="$HOME/.nvm"
+if [ ! -d "$NVM_DIR" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 fi
 
 echo "All done! Setup complete"
