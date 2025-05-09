@@ -29,8 +29,8 @@ return {
 		-- vim.keymap.set("n", "<leader>gb", function()
 		--   require("gitsigns").toggle_current_line_blame()
 		-- end, { desc = "Toggle Git Blame" })
-		-- vim.keymap.set("n", "<leader>gn", ":Gitsigns toggle_numhl", { desc = "Toggle Git line number highlight" })
-		-- vim.keymap.set("n", "<leader>gl", ":Gitsigns toggle_linehl", { desc = "Toggle Git line highlight" })
-		-- vim.keymap.set("n", "<leader>gw", ":Gitsigns toggle_word_diff", { desc = "Toggle Git word diff highlight" })
+		vim.keymap.set("n", "<leader>gn", ":Gitsigns toggle_numhl", { desc = "Toggle Git line number highlight" })
+		vim.keymap.set("n", "<leader>gl", ":Gitsigns toggle_linehl", { desc = "Toggle Git line highlight" })
+		vim.keymap.set("n", "<leader>gw", ":Gitsigns toggle_word_diff", { desc = "Toggle Git word diff highlight" })
 	end,
 }
