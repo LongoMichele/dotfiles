@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+echo "==> Installing hyprland packages..."
+
+install_mac() {
+  echo "OS not yet supported"
+}
+
+install_linux() {
+  if command -v pacman &>/dev/null; then
+    sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi-wayland waybar swaybg
+  else
+    echo "Unknown package manager"
+    exit 1
+  fi
+}
+
+case "$OSTYPE" in
+  darwin*) install_mac ;;
+  linux*) install_linux ;;
+  *) echo "OS not supported"; exit 1 ;;
+esac
+

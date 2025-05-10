@@ -1,0 +1,94 @@
+{
+  "layer": "top",
+  "position": "top",
+
+  "modules-left": [ "hyprland/workspaces" ],
+  "modules-center": [ "clock" ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "backlight",
+    "battery",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5] // puoi modificare questi numeri a seconda del tuo setup
+    },
+    "show-special": true
+  },
+
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%B %d %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "cpu": {
+    "format": "{usage}%  ",
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "{}%  "
+  },
+
+  "backlight": {
+    "format": "{percent}%  {icon}",
+    "format-icons": [ "󰃞", "󰃟", "󰃠" ],
+    "tooltip": false
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "interval": 1,
+    "format": "{capacity}%  {icon}",
+    "format-full": "{capacity}%  {icon}",
+    "format-charging": "{capacity}%  ",
+    "format-plugged": "{capacity}%  ",
+    "format-alt": "{time}  {icon}",
+    "format-icons": [ "", "", "" ],
+    "tooltip": false
+  },
+
+  "network": {
+    "format-wifi": "{essid}  ",
+    "format-ethernet": "{ipaddr}/{cidr}  ",
+    "format-linked": "{ifname} (No IP)  ",
+    "format-disconnected": "Disconnected  ",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip-format": "Signal: {signalStrength}%"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}%  {icon} ",
+    "format-bluetooth-muted": "{volume}%  {icon} ",
+    "format-muted": "{volume}%  ",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [ "", "", "" ]
+    },
+    "on-click": "pavucontrol",
+    "tooltip": false
+  }
+}
+
