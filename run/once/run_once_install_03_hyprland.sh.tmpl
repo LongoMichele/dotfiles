@@ -9,7 +9,7 @@ install_mac() {
 
 install_linux() {
   if command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi
+    sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi-wayland waybar
   else
     echo "Unknown package manager"
     exit 1
