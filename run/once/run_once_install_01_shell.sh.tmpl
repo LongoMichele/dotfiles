@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "==> Installing base packages..."
+echo "==> Installing shell packages..."
 
 install_mac() {
   echo "OS not yet supported"
@@ -10,18 +10,12 @@ install_mac() {
 install_linux() {
   if command -v apt &>/dev/null; then
     sudo apt update
-    sudo apt install -y neovim tmux zsh git curl fonts-powerline kitty
+    sudo apt install -y zsh git curl fonts-powerline
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm neovim curl nodejs tmux zsh git ttf-meslo-nerd kitty
+    sudo pacman -Sy --needed --noconfirm zsh git curl ttf-meslo-nerd
   else
     echo "Unknown package manager"
     exit 1
-  fi
-  
-  DOCUMENTS_DIR="$HOME/Documents/chezmoi"
-  if ! [ -d $DOCUMENTS_DIR ]; then
-    mkdir -p $DOCUMENTS_DIR
-    ln -s ~/.local/share/chezmoi $DOCUMENTS_DIR
   fi
 }
 
@@ -31,26 +25,15 @@ case "$OSTYPE" in
   *) echo "OS not supported"; exit 1 ;;
 esac
 
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
 # oh-my-zsh install
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  echo "Installing oh-my-zsh..."
+  echo "===> Installing oh-my-zsh..."
   RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # powerlevel10k install
 if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-  echo "Installing powerlevel10k..."
+  echo "===> Installing powerlevel10k..."
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 fi
 
-# nvm install
-export NVM_DIR="$HOME/.nvm"
-if [ ! -d "$NVM_DIR" ]; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-fi
-
-echo "All done! Setup complete"
