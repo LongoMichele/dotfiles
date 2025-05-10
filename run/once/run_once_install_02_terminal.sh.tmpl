@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+echo "==> Installing terminal & editor packages..."
+
+install_mac() {
+  echo "OS not yet supported"
+}
+
+install_linux() {
+  if command -v apt &>/dev/null; then
+    sudo apt update
+    sudo apt install -y neovim tmux kitty
+  elif command -v pacman &>/dev/null; then
+    sudo pacman -Sy --needed --noconfirm neovim tmux kitty
+  else
+    echo "Unknown package manager"
+    exit 1
+  fi
+}
+
+case "$OSTYPE" in
+  darwin*) install_mac ;;
+  linux*) install_linux ;;
+  *) echo "OS not supported"; exit 1 ;;
+esac
+
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  echo "===> Installing tpm..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+

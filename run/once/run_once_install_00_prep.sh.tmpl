@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+DOCUMENTS_DIR="$HOME/Documents/chezmoi"
+CHEZMOI_DIR="$HOME/.local/share/chezmoi"
+
+echo "==> Creating symlink from $CHEZMOI_DIR to $DOCUMENTS_DIR..."
+
+install_mac() {
+  echo "OS not yet supported"
+}
+
+install_linux() {
+  if ! [ -d $DOCUMENTS_DIR ]; then
+    mkdir -p $DOCUMENTS_DIR
+    ln -s $CHEZMOI_DIR $DOCUMENTS_DIR
+  fi
+}
+
+case "$OSTYPE" in
+  darwin*) install_mac ;;
+  linux*) install_linux ;;
+  *) echo "OS not supported"; exit 1 ;;
+esac
+

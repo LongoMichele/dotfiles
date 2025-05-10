@@ -8,11 +8,20 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<S-t>", ":tabnew<CR>")
 vim.keymap.set("n", "<S-Tab>", ":tabnext<CR>")
 
--- local tabOptions = { noremap = true, silent = true }
+local tabOptions = { noremap = true, silent = true }
+vim.keymap.set("v", "<leader>(", "c()<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>[", "c[]<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>{", "c{}<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>'", "c''<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>`", "c``<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>`", "c``<Esc>P", tabOptions)
+vim.keymap.set("v", "<leader>\"", "c\"\"<Esc>P", tabOptions)
 -- vim.keymap.set("n", "<leader>Tab", ">>", tabOptions)
 -- vim.keymap.set("n", "<leader>S-Tab", ">>", tabOptions)
 -- vim.keymap.set("v", "<leader>Tab", ">gv", tabOptions)
 -- vim.keymap.set("v", "<leader>S-Tab", "<gv", tabOptions)
+
+vim.opt.clipboard = 'unnamedplus'
 
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
