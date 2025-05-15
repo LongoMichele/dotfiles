@@ -12,7 +12,7 @@ install_linux() {
     sudo apt update
     sudo apt install -y zsh git curl fonts-powerline
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm zsh git curl ttf-meslo-nerd
+    sudo pacman -Sy --needed --noconfirm zsh git curl ttf-fira-code
   else
     echo "Unknown package manager"
     exit 1
@@ -29,11 +29,12 @@ esac
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "===> Installing oh-my-zsh..."
   RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
-# powerlevel10k install
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-  echo "===> Installing powerlevel10k..."
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+
+if [ ! -f "/usr/local/bin/starship" ]; then
+  echo "===> Installing starship..."
+  curl -sS https://starship.rs/install.sh | sh
 fi
 
