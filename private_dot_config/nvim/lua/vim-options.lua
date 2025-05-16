@@ -14,6 +14,8 @@ vim.keymap.set("n", "<S-Tab>", ":tabnext<CR>")
 -- vim.keymap.set("v", "<leader>Tab", ">gv", tabOptions)
 -- vim.keymap.set("v", "<leader>S-Tab", "<gv", tabOptions)
 
+vim.opt.clipboard = 'unnamedplus'
+
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
