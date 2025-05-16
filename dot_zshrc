@@ -19,8 +19,6 @@ fi
 export EDITOR="$(which nvim)"
 export VISUAL="$(which nvim)"
 
-eval "$(rbenv init - --no-rehash zsh)"
-
 alias rc="nvim ~/.zshrc && source ~/.zshrc"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
 alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
