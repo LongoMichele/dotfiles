@@ -10,15 +10,9 @@ install_mac() {
 install_linux() {
   if command -v apt &>/dev/null; then
     sudo apt update
-    sudo apt install -y neovim tmux
-    {{ if not .minimal }}
-    sudo apt install -y kitty
-    {{ end }}
+    sudo apt install -y neovim tmux kitty
   elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm neovim tmux
-    {{ if not .minimal }}
-    sudo pacman -Sy --needed --noconfirm kitty
-    {{ end }}
+    sudo pacman -Sy --needed --noconfirm neovim tmux kitty
   else
     echo "Unknown package manager"
     exit 1

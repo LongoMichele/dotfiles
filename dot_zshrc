@@ -23,9 +23,7 @@ eval "$(rbenv init - --no-rehash zsh)"
 
 alias rc="nvim ~/.zshrc && source ~/.zshrc"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
-{{ if not .minimal }}
 alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
-{{ end }}
 
 alias c="clear &&";
 alias cc="clear";

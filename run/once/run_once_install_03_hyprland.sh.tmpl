@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-{{ if not .minimal }}
 echo "==> Installing hyprland packages..."
 
 install_mac() {
@@ -9,7 +8,9 @@ install_mac() {
 }
 
 install_linux() {
-  if command -v pacman &>/dev/null; then
+  if command -v apt &>/dev/null; then
+    echo "APT not supported"
+  elif command -v pacman &>/dev/null; then
     sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi-wayland waybar swaybg
   else
     echo "Unknown package manager"
@@ -22,5 +23,4 @@ case "$OSTYPE" in
   linux*) install_linux ;;
   *) echo "OS not supported"; exit 1 ;;
 esac
-{{ end }}
 
