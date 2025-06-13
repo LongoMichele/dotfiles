@@ -10,7 +10,7 @@ install_mac() {
 install_linux() {
   if command -v apt &>/dev/null; then
     sudo apt update
-    sudo apt install -y zsh git curl fonts-powerline fastfetch
+    sudo apt install -y zsh git curl fonts-powerline neofetch
   elif command -v pacman &>/dev/null; then
     sudo pacman -Sy --needed --noconfirm chezmoi zsh git curl ttf-fira-code fastfetch
   else
