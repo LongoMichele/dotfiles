@@ -12,12 +12,10 @@ install_linux() {
     sudo apt update
     sudo apt install -y snapd
     sudo snap install node --classic
-  elsif command -v pacman &>/dev/null; then
+  elif command -v pacman &>/dev/null; then
     sudo pacman -Sy --needed --noconfirm nodejs npm
-    {{ if not .minimal }}
     sudo pacman -Sy --needed --noconfirm flatpak
     flatpak install flathub app.zen_browser.zen
-    {{ end }}
   else
     echo "Unknown package manager"
     exit 1
