@@ -23,7 +23,9 @@ eval "$(rbenv init - --no-rehash zsh)"
 
 alias rc="nvim ~/.zshrc && source ~/.zshrc"
 alias kittyconf="nvim ~/.config/kitty/kitty.conf"
+{{ if not .minimal }}
 alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
+{{ end }}
 
 alias c="clear &&";
 alias cc="clear";
@@ -79,7 +81,4 @@ if [[ $TERM_PROGRAM != "vscode" ]]; then
     neofetch
   fi
 fi
-
-export FLYCTL_INSTALL="/home/michele/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
 

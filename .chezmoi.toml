@@ -5,3 +5,5 @@ delimiters = ["{{", "}}"]
 autoCommit = true
 autoPush = true
 
+[data]
+minimal = false

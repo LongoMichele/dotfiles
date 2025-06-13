@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+{{ if not .minimal }}
 echo "==> Installing hyprland packages..."
 
 install_mac() {
@@ -21,4 +22,5 @@ case "$OSTYPE" in
   linux*) install_linux ;;
   *) echo "OS not supported"; exit 1 ;;
 esac
+{{ end }}
 
