@@ -4,17 +4,32 @@ set -e
 echo "==> Installing hyprland packages..."
 
 install_mac() {
-  echo "OS not yet supported"
+  echo "OS does not support hyprland"
 }
 
 install_linux() {
-  if command -v apt &>/dev/null; then
-    echo "APT not supported"
-  elif command -v pacman &>/dev/null; then
-    sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi-wayland waybar swaybg
+  TRY_INSTALL=false
+  
+  if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    TRY_INSTALL=true
   else
-    echo "Unknown package manager"
-    exit 1
+    REQUEST_STR="It looks like you're on a headless system. Do you still want to install Hyprland?"
+    read -r -p "$REQUEST_STR [y/N] " ANSWER
+    case "$ANSWER" in
+      y|Y ) TRY_INSTALL=true ;;
+      * ) TRY_INSTALL=false ;;
+    esac
+  fi
+  
+  if [ "$TRY_INSTALL" = true ]; then
+    if command -v apt &>/dev/null; then
+      echo "APT not supported"
+    elif command -v pacman &>/dev/null; then
+      sudo pacman -Sy --needed --noconfirm hyprland hyprlock rofi-wayland waybar swaybg
+    else
+      echo "Unknown package manager"
+      exit 1
+    fi
   fi
 }
 
