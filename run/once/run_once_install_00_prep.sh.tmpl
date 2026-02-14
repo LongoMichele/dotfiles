@@ -18,6 +18,7 @@ install_linux() {
 
 case "$OSTYPE" in
   darwin*) install_mac ;;
+  linux-android) echo "OS not supported"; exit 1 ;;
   linux*) install_linux ;;
   *) echo "OS not supported"; exit 1 ;;
 esac
